@@ -1,0 +1,9 @@
+baseURL = "/"
+languageCode = "en-us"
+title = "elanthia online"
+theme= "seminyak"
+
+[Params]
+  color_palette = "grey"
+  referrer_policy = "same-origin"
+  google_fonts = "Oswald|Raleway"
