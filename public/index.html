@@ -1,33 +1,135 @@
-<!doctype html>
-<html lang="en-us">
-  <head>
-    <meta name="generator" content="Hugo 0.48" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>elanthia online</title>
-    <meta name="description" content="404">
-    <meta property="og:title" content="Elanthia Online" />
-    <meta property="og:description" content="404" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="/" />
-    <meta name="referrer" content="same-origin">
-    <link href="https://fonts.googleapis.com/css?family=Oswald%7cRaleway" rel="stylesheet">
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="elanthia online">
-    <link rel="canonical" href="/">
-    <link rel="stylesheet" href="/css/screen.css">
-  </head>
-  <body>
-    <div class="w-full h-screen max-w-screen-xl mx-auto bg-grey-darker bg-cover bg-center bg-no-repeat" >
-    <div class="static h-screen bg-transparent text-grey-lighter font-raleway lg:text-xl">
-      <div class="absolute h-64 w-full pin-b pin-l bg-grey-lighter opacity-15"></div>
-      <div class="absolute h-64 w-full pin-b pin-l p-6">
-        <h1 class="mb-2 font-oswald text-grey-lightest">Elanthia Online</h1>
-        <p>The forums have been taken down for now.</p>
-        <p>You can checkout the archive <a href="https://forums.archives.elanthia.online/topics/">here</a></p>
-        <p>Checkout our <a href="https://github.com/elanthia-online">other projects</a></p>
-        <p>Checkout GS4 <a href="https://shops.elanthia.online/">Player Shops</a></p>
-      </div>
-    </div>
-  </div>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="text-scale" content="scale">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Elanthia Online | Open-source tools for GemStone IV and DragonRealms</title>
+  <meta name="description" content="Elanthia Online builds open-source tools for GemStone IV and DragonRealms: the Lich 5 scripting engine, community script repositories, front ends and web tools.">
+  <link rel="canonical" href="https://elanthia.online/">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f3fafd" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#050d24" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/img/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Elanthia Online">
+  <meta property="og:title" content="Elanthia Online">
+  <meta property="og:description" content="Open-source tools for GemStone IV and DragonRealms: Lich 5, community scripts, front ends and web tools.">
+  <meta property="og:url" content="https://elanthia.online/">
+  <meta property="og:image" content="https://elanthia.online/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Elanthia Online Lich logo: a skull in a blue hood with cyan flames.">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <header class="hero">
+    <picture>
+      <source type="image/avif" srcset="/assets/img/lich-320.avif 1x, /assets/img/lich-640.avif 2x">
+      <img class="hero-logo" src="/assets/img/lich-320.webp" srcset="/assets/img/lich-320.webp 1x, /assets/img/lich-640.webp 2x" alt="" width="320" height="320" fetchpriority="high">
+    </picture>
+    <h1>Elanthia Online</h1>
+    <p class="tagline">Open-source tools, scripts and front ends for the Simutronics games GemStone&nbsp;IV and DragonRealms.</p>
+    <p class="hero-actions">
+      <a class="button" href="https://github.com/elanthia-online">Elanthia Online on GitHub</a>
+    </p>
+  </header>
+
+  <main>
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <!-- [html-validate-disable-next no-redundant-role -- Safari drops list semantics when list-style is none] -->
+      <ul class="cards" role="list">
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://github.com/elanthia-online/lich-5">Lich 5</a></h3>
+              <p class="games">GemStone IV and DragonRealms</p>
+            </header>
+            <p>The scripting engine. Lich runs between the game and your front end, and gives scripts a Ruby runtime and a shared library to build on.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://github.com/elanthia-online/scripts">Shared scripts</a></h3>
+              <p class="games">GemStone IV and DragonRealms</p>
+            </header>
+            <p>Community Lich scripts, mostly for GemStone IV, plus the core scripts that ship with every Lich install.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://github.com/elanthia-online/dr-scripts">dr-scripts</a></h3>
+              <p class="games">DragonRealms</p>
+            </header>
+            <p>A curated set of Lich scripts for DragonRealms, from hunting and crafting to training and travel.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://github.com/elanthia-online/ProfanityFE">ProfanityFE</a></h3>
+              <p class="games">GemStone IV and DragonRealms</p>
+            </header>
+            <p>A terminal front end built on Ruby and ncurses. It connects through Lich.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://github.com/elanthia-online/Lichborne">Lichborne</a></h3>
+              <p class="games">GemStone IV and DragonRealms</p>
+            </header>
+            <p>A community-driven game client, built for people who already play with Lich.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://shops.elanthia.online/">Player Shops</a></h3>
+              <p class="games">GemStone IV</p>
+            </header>
+            <p>Search the items for sale in GemStone IV player shops.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://analytics.elanthia.online/">Hunting analytics</a></h3>
+              <p class="games">GemStone IV</p>
+            </header>
+            <p>A dashboard for the analytics.lic script: hunts, silver, experience, kills and bounties. It reads your own database in the browser and uploads nothing.</p>
+          </article>
+        </li>
+        <li>
+          <article class="card">
+            <header>
+              <h3><a class="card-link" href="https://elanthia-online.github.io/lich-5-docs/">Lich 5 API docs</a></h3>
+              <p class="games">For script authors</p>
+            </header>
+            <p>Generated reference for the Lich 5 API, for browsing what is available before you start a script.</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section class="archive" aria-labelledby="archive-heading">
+      <h2 id="archive-heading">Forum archive</h2>
+      <p>The Elanthia Online forums are closed. Old threads are still available, read-only, in the <a href="https://forums.archives.elanthia.online/topics/">forum archive</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Elanthia Online is a community project and is not affiliated with Simutronics Corporation. GemStone IV and DragonRealms are trademarks of Simutronics Corporation.</p>
+    <p><a href="https://github.com/elanthia-online/site">Source for this site</a></p>
+  </footer>
+</body>
 </html>
