@@ -1,0 +1,295 @@
+/* Elanthia Online
+   Colours come from the Lich logo. Every text pair below is checked for
+   WCAG AA contrast by scripts/check-contrast.mjs; run it after changing one. */
+
+:root {
+  /* Raw palette */
+  --navy-950: #050d24;
+  --navy-900: #0a1838;
+  --navy-800: #102552;
+  --navy-700: #1a3570;
+  --blue-700: #0245bb;
+  --blue-600: #0158e0;
+  --blue-500: #016bfb;
+  --ice-300: #95d2ea;
+  --ice-100: #e2f7fc;
+  --bone-50: #f3fafd;
+  --cyan-400: #13fbfc;
+  --teal-400: #0feadd;
+  --slate-600: #3c5378;
+
+  /* Tokens that follow the colour scheme */
+  --bg: light-dark(var(--bone-50), var(--navy-950));
+  --surface: light-dark(#fff, var(--navy-900));
+  --text: light-dark(var(--navy-900), var(--ice-100));
+  --text-muted: light-dark(var(--slate-600), var(--ice-300));
+  --link: light-dark(var(--blue-700), var(--cyan-400));
+  --border: light-dark(#6f86ad, #4a6aa8);
+  --border-strong: light-dark(var(--blue-600), var(--teal-400));
+  --focus: light-dark(var(--blue-700), var(--cyan-400));
+  --button-bg: light-dark(var(--blue-700), var(--teal-400));
+  --button-text: light-dark(#fff, var(--navy-950));
+  --glow: light-dark(oklch(70% 0.15 250 / 0.18), oklch(60% 0.2 260 / 0.35));
+
+  --radius: 0.75rem;
+  --measure: 65ch;
+
+  color-scheme: light dark;
+  accent-color: var(--link);
+}
+
+@media (forced-colors: active) {
+  :root {
+    --border: CanvasText;
+    --border-strong: Highlight;
+    --focus: Highlight;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-block-size: 100dvb;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  text-align: start;
+  overflow-wrap: break-word;
+}
+
+main {
+  flex: 1;
+  inline-size: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+  padding-block: 1rem 3rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.08em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.16em;
+}
+
+:where(a, button):focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+::selection {
+  background-color: light-dark(var(--blue-600), var(--teal-400));
+  color: light-dark(#fff, var(--navy-950));
+}
+
+/* Hero */
+
+.hero {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 3rem 1rem 2.5rem;
+  text-align: center;
+  background-image: radial-gradient(ellipse 60% 55% at 50% 30%, var(--glow), transparent 70%);
+}
+
+.hero-logo {
+  display: block;
+  inline-size: clamp(10rem, 6rem + 20vw, 20rem);
+  block-size: auto;
+  aspect-ratio: 1;
+  filter: drop-shadow(0 0.5rem 1.5rem oklch(55% 0.2 260 / 0.35));
+}
+
+.hero h1 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  max-inline-size: 40ch;
+  margin: 0;
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  margin: 1rem 0 0;
+}
+
+.button {
+  display: inline-block;
+  min-block-size: 2.75rem;
+  padding: 0.6rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+@media (forced-colors: active) {
+  .button {
+    border-color: LinkText;
+    background-color: Canvas;
+    color: LinkText;
+  }
+}
+
+/* Sections */
+
+section + section {
+  margin-block-start: 3rem;
+}
+
+h2 {
+  margin-block: 0 1.25rem;
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+}
+
+.archive p {
+  max-inline-size: var(--measure);
+}
+
+/* Project cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards > li {
+  display: grid;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+}
+
+.card header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card p {
+  margin: 0;
+}
+
+.card .games {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* The heading link covers the whole card, so the card is one big target. */
+.card a.card-link {
+  text-decoration: none;
+}
+
+.card a.card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.card a.card-link:focus-visible {
+  outline: none;
+}
+
+.card:has(a.card-link:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.card:has(a.card-link:hover) {
+  border-color: var(--border-strong);
+}
+
+.card:has(a.card-link:hover) a.card-link {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    transition: translate 150ms ease-out, border-color 150ms ease-out;
+  }
+
+  .card:has(a.card-link:hover) {
+    translate: 0 -2px;
+  }
+}
+
+/* Footer */
+
+.site-footer {
+  padding: 2rem 1rem;
+  border-block-start: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.site-footer p {
+  max-inline-size: var(--measure);
+  margin: 0 auto 0.5rem;
+}
+
+/* Error page */
+
+.not-found {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.not-found p {
+  max-inline-size: var(--measure);
+}

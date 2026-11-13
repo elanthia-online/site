@@ -1,0 +1,102 @@
+# Check the site on every pull request, and deploy public/ to GitHub Pages
+# when master changes. The deploy only runs after the checks pass.
+name: Site
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly, so dead external links show up even when nothing changes.
+    - cron: "17 6 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Validate and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: lts/*
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: HTML validation
+        run: npm run test:html
+      - name: Colour contrast
+        run: npm run test:contrast
+      - name: Browser and accessibility checks
+        run: npm run test:browser
+
+  links:
+    # External sites go down for reasons outside this repo, so a broken link
+    # is reported here but doesn't block merging or deploying.
+    name: Check links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check links
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --root-dir "${{ github.workspace }}/public" --max-retries 3 --accept 200,429 --no-progress "public/**/*.html"
+          fail: true
+
+  ci-gate:
+    # The single required check for branch protection (the org's shared
+    # rulesets require a check named ci-gate).
+    name: ci-gate
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require the test job to pass
+        env:
+          RESULT: ${{ needs.test.result }}
+        run: |
+          echo "test: $RESULT"
+          [ "$RESULT" = success ]
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    needs: [test]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # One deploy at a time; let a running deploy finish instead of cancelling it.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Upload site
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ./public
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

@@ -1,0 +1,23 @@
+{
+  "name": "elanthia-online-site",
+  "private": true,
+  "description": "Source for https://elanthia.online/",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "serve": "http-server public -a 127.0.0.1 -p 8080 -c-1",
+    "test": "npm run test:html && npm run test:contrast && npm run test:browser",
+    "test:html": "html-validate public",
+    "test:contrast": "node scripts/check-contrast.mjs",
+    "test:browser": "node scripts/test-browser.mjs",
+    "images": "scripts/build-images.sh"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "html-validate": "11.21.1",
+    "http-server": "14.1.1",
+    "playwright": "1.65.0"
+  }
+}
