@@ -15,7 +15,7 @@
     "images": "scripts/build-images.sh"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.14.0",
+    "@axe-core/playwright": "4.14.1",
     "html-validate": "11.21.1",
     "http-server": "14.1.1",
     "playwright": "1.65.1"
